@@ -62,3 +62,6 @@ ALTER TABLE clients ADD COLUMN age INTEGER(2);
 
 -- Mise à jour des données 
 UPDATE clients SET telephone="0673460896" where ID=2;
+
+-- Mise à jour données mais sur plusieurs champs 
+UPDATE clients SET postnom="Tarzan",age=17 where ID=3;
