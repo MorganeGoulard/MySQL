@@ -20,3 +20,17 @@ USE poe_ventes;
 SHOW TABLES;
 
 -- 5. création de la table de données 
+-- INTEGER : c'est le type entier 
+-- NOT NULL : cette colonne doit toujours contenir une info 
+-- AUTO_INCREMENT : Dire à MySQL de fournir des valeurs en incrémentant 
+--                  automatiquement les clés 
+-- PRIMARY KEY : Marquer la colonne comme étant la clé primaire 
+-- UNIQUE : pour appliquer une contrainte d'unicité
+CREATE TABLE clients(
+ id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ nom VARCHAR(50) NOT NULL,
+ prenom VARCHAR(50) NOT NULL,
+ email VARCHAR (70),
+ telephone VARCHAR (20) NOT NULL   
+);
+
