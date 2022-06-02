@@ -76,3 +76,7 @@ SHOW VARIABLES LIKE 'sql_mode';
 
 --> Définir le mode strict pour le mode de transaction 
 set sql_mode='STRICT_TRANS_TABLES';
+
+-- Filtres 
+SELECT * FROM clients WHERE age>20;
+SELECT * FROM clients WHERE age>20 AND prenom="Morgane";
