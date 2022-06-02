@@ -24,11 +24,11 @@ values ("N1280","Nokia",199,1925),("Iphone 4","Apple",399,9436),
 -- 4. Lister tous les téléphones
 SELECT * FROM telephones;
 
--- 5. Lister tous les téléphones dont le prix>200€
-select * from telephones where price>200;
+-- 5. Lister tous les téléphones (name,manufacturer) dont le prix>200€
+select name, manufacturer from telephones where price>200;
 
---6. Lister les téléphones dont prix varie entre 150 et 200€
-select * from telephones where price>150 and price<200;
+--6. Lister les téléphones (name,manufacturer) dont prix varie entre 150 et 200€
+select name, manufacturer from telephones where price>150 and price<200;
 
 --7. Lister les téléphones de marquer samsung et Apple 
 select * from telephones where manufacturer="Samsung" or "Apple";
