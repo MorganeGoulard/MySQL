@@ -15,4 +15,8 @@ CREATE DATABASE poe_ventes;
 -- USE <nom base_de_données>
 USE poe_ventes;
 
--- 4. création de la table de données 
+-- 4. Lister les tables de la base de données
+
+SHOW TABLES;
+
+-- 5. création de la table de données 
