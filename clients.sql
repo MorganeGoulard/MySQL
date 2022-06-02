@@ -34,3 +34,5 @@ CREATE TABLE clients(
  telephone VARCHAR (20) NOT NULL   
 );
 
+-- Voir la description de la table 
+-- DESC <nom_table> ou DESCRIBE <nom_table>
