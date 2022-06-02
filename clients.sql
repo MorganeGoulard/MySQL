@@ -69,4 +69,10 @@ UPDATE clients SET postnom="Tarzan",age=17 where ID=3;
 -- Supprimer un enregistrement 
 DELETE FROM clients WHERE ID=3;
 
+-- configurer MYSQL en mode strict 
+-- Valeur pour le mode strict : STRICT_TRANS_TABLES
+--> vérifier le mode de transaction 
+SHOW VARIABLES LIKE 'sql_mode';
 
+--> Définir le mode strict pour le mode de transaction 
+set sql_mode='STRICT_TRANS_TABLES';
