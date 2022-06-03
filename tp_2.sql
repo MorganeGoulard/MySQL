@@ -33,5 +33,27 @@ values ("Capgemini","Fabrice","Martin","martin@mail.com","06 56 85 84 33", "abc"
 
 INSERT INTO orders(typePresta,designation,clientId,nbDays,unitPrice,state) 
 values ("Formation", "Angular init",2,3,1200,0), ("Formation", "React avancé",2,3,1000,2),
-("Coaching", "React Techlead",1,20,900,2), ("Coaching", "React Teachead",3,30,1400,1),
-("Coaching", "Jakarta EE",3,6,500,0), ("Coaching", "Angular",4,10,1800,2);
+("Coaching", "React Techlead",1,20,900,2), ("Coaching","Nest.js Techlead",1,50,800,1), ("Coaching", "React Teachead",3,30,1400,1),
+("Coaching", "Jakarta EE",3,6,500,0), ("Coaching", "Angular",4,10,1800,2),("Formation", "React Techlead",1,25,500,2), 
+("Formation", "Jakarta EE",2,7,2000,1), ("Coaching", "Angular",4,22,1250,0);
+
+
+-- Afficher toutes les formations sollicitées par le client M2i Formation
+SELECT clients.companyName, orders.typePresta FROM clients JOIN orders 
+ON clients.id=orders.clientId where clients.companyName="M2I Formation";
+
+-- Afficher les noms et contacts de tous les contacts des clients qui ont sollicités un coaching
+SELECT DISTINCT CONCAT (clients.firstName, " ", clients.lastName) AS noms, CONCAT(clients.email,"/", clients.phone) AS contact, 
+orders.typePresta FROM clients JOIN orders ON clients.id=orders.clientId where orders.typePresta="Coaching";
+
+-- Afficher les noms et contacts de tous les contacts des clients qui ont sollicités un 
+-- coaching pour les accompagnatns React.js
+SELECT CONCAT (clients.firstName, " ", clients.lastName) AS noms, CONCAT(clients.email,"/", clients.phone) AS contact,
+orders.designation FROM clients JOIN orders ON clients.id=orders.clientId where orders.designation="Nest.js Techlead";
+
+-- Question sur les vues 
+CREATE VIEW v_taxes AS SELECT typePresta, CONCAT ((unitPrice*nbDays)," ","€") AS totalExcludedTaxe, 
+CONCAT ((unitPrice*nbDays*1.2), " ","€") AS TotalWithTaxe FROM orders;
+SELECT * FROM v_taxes;
+
+-- 
