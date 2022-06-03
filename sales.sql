@@ -46,7 +46,14 @@ SELECT name,manufacturer,price FROM telephones ORDER BY price ASC;
 -- Plusieurs filtres avec ordre 
 SELECT name,manufacturer,price FROM telephones ORDER BY price DESC, manufacturer DESC;
 
+-- produit du champ price+units_sold 
+SELECT name,manufacturer,price, units_sold, price*units_solds FROM telephones;
 
+-- Renommer les colonnes dans l'affichage avec AS (alias)
+SELECT name AS modele, manufacturer AS constructor, price AS prix, 
+units_solds AS unites_vendues, (price*units_solds) AS CA FROM telephones;
+-- on peut aussi écrire price*units_solds AS "Chiffre d'affaire" mais pas du tout
+-- recommandé
 
 
 
