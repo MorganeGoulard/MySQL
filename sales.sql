@@ -55,5 +55,12 @@ units_solds AS unites_vendues, (price*units_solds) AS CA FROM telephones;
 -- on peut aussi écrire price*units_solds AS "Chiffre d'affaire" mais pas du tout
 -- recommandé
 
+-- concaténation entre champs manufacturer + name et price et "€" grâce ) CONCAT 
+-- CONCAT (manufacturer, name) --> pas d'espace dans l'affichage entre les 2, donc 
+--                                  on ajoute " " entre les 2. 
+SELECT CONCAT (manufacturer, " ", name) AS nom, CONCAT (price, "€") AS prix FROM telephones; 
 
+-- petit exercice application  
+SELECT CONCAT (name, " ", manufacturer) AS modele, CONCAT (price, " ", "€") AS prix, units_solds AS unites_vendues, 
+CONCAT ((price*units_solds), " ", "€") AS CA FROM telephones;
 
