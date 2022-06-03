@@ -57,4 +57,8 @@ CONCAT ((unitPrice*nbDays*1.2), " ","€") AS TotalWithTaxe FROM orders;
 SELECT * FROM v_taxes;
 
 -- Lister toutes les prestations qui sont confirmées et qui vont rapporter plus de 30.000€
-SELECT state, TotalWithTaxe FROM orders where state=2 AND (unitPrice*nbDays) >= 30000;
+SELECT orders.state, TotalWithTaxe FROM v_taxes,orders where orders.state=2 AND (unitPrice*nbDays) >= 30000;
+
+
+
+
