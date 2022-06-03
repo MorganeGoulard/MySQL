@@ -70,3 +70,19 @@ price AS prix, units_solds AS unites_vendues, (price*units_solds) AS CA FROM tel
 -- Affichage vue 
 SELECT * FROM v_revenu_total;
 
+--Eviter la redondance 
+SELECT DISTINCT(manufacturer) FROM telephones; -- Va afficher la liste des contructeurs sans répétitions
+
+-- Afficher le nombre d'enregistrement
+SELECT COUNT(*) FROM telephones
+-- Afficher nombre d'appareil Apple 
+SELECT COUNT(*) FROM telephones WHERE manufacturer="Apple";
+
+-- Total des ventes
+SELECT SUM(units_solds) AS Total_Ventes FROM telephones; 
+-- Moyenne des ventes
+SELECT AVG(units_solds) AS Moyenne_Ventes FROM telephones;
+-- Ventes les + élevées 
+SELECT MAX(units_solds) AS Ventes_plus_elevée FROM telephones;
+-- Ventes les - elevées 
+SELECT MIN(units_solds) AS Ventes_plus_elevée FROM telephones;
