@@ -64,3 +64,9 @@ SELECT CONCAT (manufacturer, " ", name) AS nom, CONCAT (price, "€") AS prix FR
 SELECT CONCAT (name, " ", manufacturer) AS modele, CONCAT (price, " ", "€") AS prix, units_solds AS unites_vendues, 
 CONCAT ((price*units_solds), " ", "€") AS CA FROM telephones;
 
+-- Création d'une vue 
+CREATE VIEW v_revenu_total AS SELECT name AS modele, manufacturer AS constructor, 
+price AS prix, units_solds AS unites_vendues, (price*units_solds) AS CA FROM telephones;
+-- Affichage vue 
+SELECT * FROM v_revenu_total;
+
