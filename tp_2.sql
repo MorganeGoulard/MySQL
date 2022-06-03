@@ -21,7 +21,17 @@ typePresta VARCHAR (30) NOT NULL,
 designation VARCHAR (30) NOT NULL, 
 clientId INTEGER NOT NULL, FOREIGN KEY (clientId) REFERENCES clients(id) ON DELETE RESTRICT,
 nbDays INTEGER NOT NULL,
-unitPrice FLOAT(4,2)
+unitPrice FLOAT(10,2)
 state INTEGER (1) NOT NULL
 );
 
+INSERT INTO clients (companyName,firstName,lastName,email,phone,address,zipCode,city,country,state)
+values ("Capgemini","Fabrice","Martin","martin@mail.com","06 56 85 84 33", "abc", "xyz","Nantes","France",0),
+("M2I Formation", "Julien", "Lamard", "lamard@mail.com", "06 11 22 33 44", "abc", "xyz", "Paris", "France",1),
+("ATOS", "Jean", "Zozor", "jzozor@mail.com", "06 09 08 07 06", "quelque part", "tre", "Bastia", "France", 1),
+("SOPRA STRERIA", "Morgane", "Goulard", "morgane@mail.com", "06 02 03 04 05", "chez moi", "sfu", "Rennes", "France", 0);
+
+INSERT INTO orders(typePresta,designation,clientId,nbDays,unitPrice,state) 
+values ("Formation", "Angular init",2,3,1200,0), ("Formation", "React avancé",2,3,1000,2),
+("Coaching", "React Techlead",1,20,900,2), ("Coaching", "React Teachead",3,30,1400,1),
+("Coaching", "Jakarta EE",3,6,500,0), ("Coaching", "Angular",4,10,1800,2);
