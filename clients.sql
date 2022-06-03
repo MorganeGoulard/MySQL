@@ -80,3 +80,43 @@ set sql_mode='STRICT_TRANS_TABLES';
 -- Filtres 
 SELECT * FROM clients WHERE age>20;
 SELECT * FROM clients WHERE age>20 AND prenom="Morgane";
+
+-- Création d'une nouvelle table avec relation
+CREATE TABLE telephones(
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY
+    numero VARCHAR(20) NOT NULL,
+    id_clients INTEGER,
+    FOREIGN KEY (id_clients) REFERENCES clients(ID) ON DELETE CASCADE
+    );
+-- ON DELETE CASCADE : si on supprime le client, tous les num associés sont suppr 
+-- ON DELETE SET NULL : le client est supprimé, mais le champ est marqué comme NULL 
+-- ON DELETE RESTRICT : si on essaie de suppr n° tel, tant que c'est associé à un client, ERROR
+--                      pas la possiblité de faire cette action 
+-- ON DELETE CASCADE ON UPDATE CASCADE : si ID de table clients modifiée, mise à jour sur table telephone
+
+-- Supprimer une colonne d'une base de données
+ALTER TABLE clients DROP COLUMN telephones;
+
+-- Supprimer BDD : DROP DATABASE poe_ventes
+-- Supprimer table : DROP TABLE clients 
+
+-- Insérer plusieurs numéros : 
+INSERT INTO telephones (numero, id_clients) 
+values (0203040506,2), (0605040302,1), (0605040309,1), (0605040333,2), (0603340302,3), 
+(0654040302,3), (0605540302,5), (0605047702,5), (0605049902,5), (0606740302,5), (0605547102,6),
+ (0611047702,6), (0605049872,6);
+
+ -- Afficher les numéros de telephone de tous les clients
+ -- requête multi-table 
+ -- tables sollicitées : clients et telephones 
+
+ SELECT clients.prenom, clients.nom, telephones.numero FROM clients JOIN telephones
+ ON clients.id=telephones.id_clients;
+ -- INNER JOIN ou JOIN c'est la même chose 
+ -- ON clients.id=telephones.id_clients : c'est ici qu'on dit qu'on veut lier id de clients qui
+ -- correspond à id_clients de telephones
+
+ -- jointure et concaténation 
+ SELECT CONCAT (clients.prenom, " ", clients.nom) AS nom, clients.email, telephones.numero FROM 
+ clients JOIN telephones ON clients.id=telephones.id_clients WHERE clients.id=1;
+
