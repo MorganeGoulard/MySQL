@@ -1,4 +1,4 @@
-CREATE DATABASE tp_insta;
+CREATE DATABASE tp3_insta;
 USE tp_insta;
 
 CREATE TABLE utilisateur(
