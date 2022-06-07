@@ -63,6 +63,31 @@ FROM orders;
 -- Lister toutes les prestations qui sont confirmées et qui vont rapporter plus de 30.000€
 SELECT orders.state, TotalWithTaxe FROM v_taxes,orders where orders.state=2 AND (unitPrice*nbDays) >= 30000;
 
+-- Commentaire de Christian 
+-- STORED : procédure stockée, cad dès qu'on remplie un nouvel enregistrement
+-- calcule automatiquement les totalexcludetaxe et totalwithtaxe 
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `clientId` int(11) NOT NULL,
+  `typePresta` varchar(100) NOT NULL,
+  `designation` varchar(100) NOT NULL,
+  `nbDays` int(11) NOT NULL,
+  `unitPrice` float NOT NULL,
+  `state` tinyint(1) NOT NULL,
+  `totalExcludeTaxe` float GENERATED ALWAYS AS (`nbDays` * `unitPrice`) STORED,
+  `totalWithTaxe` float GENERATED ALWAYS AS (`nbDays` * `unitPrice` * 1.2) STORED
+);
 
-
+-- Utilisation des filtres avec LIKE : Si on avait eu 2 orga de formation : M2i Formation 
+-- et M2u Formation Et qu'on veut voir ce qui commence par "M2" mais la suite on a oublié 
+SELECT * FROM clients WHERE companyName LIKE "M2%"; 
+-- % remplace tout ce qui peut suivre avec M2 
+-- inverse possible, je sais que le nom termine par formation 
+SELECT * FROM clients WHERE companyName LIKE "%formation";
+-- recherche au milieu d'une chaîne 
+-- chris@sopra.com
+-- jean@m2i.com
+-- sarah@sopra.fr 
+-- on veut la liste des contacts de sopra : on recherche "sopra"
+SELECT * FROM clients WHERE email LIKE "%sopra%" 
 
