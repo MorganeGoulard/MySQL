@@ -89,10 +89,10 @@ CREATE TABLE telephones(
     FOREIGN KEY (id_clients) REFERENCES clients(ID) ON DELETE CASCADE
     );
 -- ON DELETE CASCADE : si on supprime le client, tous les num associés sont suppr 
--- ON DELETE SET NULL : le client est supprimé, mais le champ est marqué comme NULL 
+-- ON DELETE SET NULL : le client est supprimé, mais le champ est marqué comme NULL mais gardé 
 -- ON DELETE RESTRICT : si on essaie de suppr n° tel, tant que c'est associé à un client, ERROR
 --                      pas la possiblité de faire cette action 
--- ON DELETE CASCADE ON UPDATE CASCADE : si ID de table clients modifiée, mise à jour sur table telephone
+-- ON UPDATE CASCADE : si ID de table clients modifiée, mise à jour sur table telephone
 
 -- Supprimer une colonne d'une base de données
 ALTER TABLE clients DROP COLUMN telephones;
