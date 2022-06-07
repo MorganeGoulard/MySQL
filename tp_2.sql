@@ -39,12 +39,13 @@ values ("Formation", "Angular init",2,3,1200,0), ("Formation", "React avancé",2
 
 
 -- Afficher toutes les formations sollicitées par le client M2i Formation
-SELECT clients.companyName, orders.typePresta FROM clients JOIN orders 
-ON clients.id=orders.clientId where clients.companyName="M2I Formation";
+SELECT orders.typePresta,orders.designation FROM orders WHERE clientId=2;
 
 -- Afficher les noms et contacts de tous les contacts des clients qui ont sollicités un coaching
-SELECT DISTINCT CONCAT (clients.firstName, " ", clients.lastName) AS noms, CONCAT(clients.email,"/", clients.phone) AS contact, 
-orders.typePresta FROM clients JOIN orders ON clients.id=orders.clientId where orders.typePresta="Coaching";
+SELECT DISTINCT CONCAT (clients.firstName, " ", clients.lastName) AS noms, 
+CONCAT(clients.email,"/", clients.phone) AS contact, orders.typePresta 
+FROM clients JOIN orders ON clients.id=orders.clientId 
+where orders.typePresta="Coaching";
 
 -- Afficher les noms et contacts de tous les contacts des clients qui ont sollicités un 
 -- coaching pour les accompagnatns React.js
@@ -52,9 +53,12 @@ SELECT CONCAT (clients.firstName, " ", clients.lastName) AS noms, CONCAT(clients
 orders.designation FROM clients JOIN orders ON clients.id=orders.clientId where orders.designation="Nest.js Techlead";
 
 -- Question sur les vues 
-CREATE VIEW v_taxes AS SELECT typePresta, CONCAT ((unitPrice*nbDays)," ","€") AS totalExcludedTaxe, 
-CONCAT ((unitPrice*nbDays*1.2), " ","€") AS TotalWithTaxe FROM orders;
-SELECT * FROM v_taxes;
+CREATE VIEW priceTotal AS SELECT 
+CONCAT(typePresta," ",designation) AS prestation,
+CONCAT(unitPrice*nbDays," €") AS totalExcludeTaxe,
+CONCAT(unitPrice*nbDays*1.2," €") AS totalWithTaxe,
+state
+FROM orders;
 
 -- Lister toutes les prestations qui sont confirmées et qui vont rapporter plus de 30.000€
 SELECT orders.state, TotalWithTaxe FROM v_taxes,orders where orders.state=2 AND (unitPrice*nbDays) >= 30000;
