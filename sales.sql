@@ -86,3 +86,23 @@ SELECT AVG(units_solds) AS Moyenne_Ventes FROM telephones;
 SELECT MAX(units_solds) AS Ventes_plus_elevée FROM telephones;
 -- Ventes les - elevées 
 SELECT MIN(units_solds) AS Ventes_plus_elevée FROM telephones;
+
+-- Nombre de ventes pour tous les fabricant
+SELECT manufacturer,SUM(units_sold) FROM telephones GROUP BY manufacturer;
+-- CA par fabricant
+SELECT manufacturer,SUM(price*units_sold) as chiffre_affaire 
+FROM telephones GROUP BY manufacturer;
+-- CA par fabricant dans l'ordre decroissant des CA
+SELECT manufacturer,SUM(price*units_sold) as chiffre_affaire 
+FROM telephones GROUP BY manufacturer ORDER BY chiffre_affaire DESC;
+-- Toutes les ventes des marques qui ont réalisé un CA > 20 000 000€
+-- ici WHERE ne marchera pas car la condition utilise une condition d'application,
+-- HAVING va permettre d'utiliser la valeur de l'alias CA
+SELECT manufacturer, SUM(price*units_solds) as chiffre_affaire 
+FROM telephones GROUP BY manufacturer HAVING chiffre_affaire > 20000000 ; 
+
+-- On veut lister les téléphones dont le prix > moyenne 
+-- Utilisation d'une query dans une requête 
+SELECT name, price FROM telephones 
+WHERE price > (SELECT AVG(price) FROM telephones) ORDER BY price DESC;
+
