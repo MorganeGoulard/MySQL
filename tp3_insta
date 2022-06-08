@@ -1,5 +1,5 @@
 CREATE DATABASE tp3_insta;
-USE tp_insta;
+USE tp3_insta;
 
 CREATE TABLE utilisateur(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -259,3 +259,7 @@ WHERE photo.id_user=commentaire.id_user;
 SELECT COUNT(*) FROM likes 
 JOIN photo ON likes.id_photo=photo.id
 WHERE photo.id=4;
+
+-- Suggestion Christian pour ajouter l'heure lors de post de photo 
+-- date_creation DATETIME DEFAULT CURRENT_TIMESTAMP
+-- date_creation DATE DEFAULT CURRENT_DATE
